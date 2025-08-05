@@ -1,0 +1,6 @@
+dramatiq[redis]
+fastapi[standard]
+orjson
+psycopg[binary]
+psycopg[pool]
+pydantic

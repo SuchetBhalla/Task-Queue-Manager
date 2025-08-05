@@ -1,0 +1,123 @@
+# refer: https://docs.docker.com/reference/compose-file/version-and-name/#name-top-level-element
+name: task_queue_manager
+
+# a 'volume' is used to persist the data genearted by a docker-container
+# refer: https://docs.docker.com/engine/storage/volumes/
+volumes:
+  pg_data:
+  nginx_logs:
+  backend_logs:
+
+# a 'secret' is used to inject passwords to docker-services
+## this is prefered over an  environment variable, because the latter can appear in error-logs
+# refer: https://docs.docker.com/compose/how-tos/use-secrets/
+secrets:
+  db_pswd:
+      file: ./secrets/db_pswd.txt
+
+# refer: https://docs.docker.com/compose/gettingstarted/
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi
+    # refer: https://docs.docker.com/reference/compose-file/deploy/#resources
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+    # refer: https://docs.docker.com/compose/how-tos/startup-order/
+    depends_on:
+      queue:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+        restart : true
+    # refer: https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/
+    env_file: ".env"
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_pswd
+    secrets:
+      - db_pswd
+    volumes:
+      - backend_logs:/backend/logs
+    # refer: https://docs.docker.com/reference/compose-file/services/#healthcheck
+    healthcheck:
+      disable: false
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:8000/ping || exit 1"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+
+  background:
+    build:
+      context: .
+      dockerfile: Dockerfile.dramatiq
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+    depends_on:
+      queue:
+        condition: service_healthy
+    env_file: ".env"
+
+  queue:
+    image: redis:8.0.3-alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+    healthcheck:
+      disable: false
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  db:
+    image: postgres:14.18-alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+    ports:
+      - 5432:5432
+    volumes:
+      # refer: https://hub.docker.com/_/postgres#pgdata
+      - pg_data:/var/lib/postgresql/data
+    env_file: ".env"
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_pswd
+    secrets:
+      - db_pswd
+    healthcheck:
+      disable: false
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+  proxy:
+    image: nginx:alpine
+    ports:
+      - 443:443
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+      - nginx_logs:/var/log/nginx
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      disable: false
+      test: ["CMD-SHELL", "curl -f --insecure https://127.0.0.1:443/ping || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3

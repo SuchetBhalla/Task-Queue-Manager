@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1
+
+# stage 1 : download the dependencies
+FROM python:3.13.5-slim AS builder
+WORKDIR /tmp
+RUN pip install -U --no-cache-dir --prefix=/dependencies 'dramatiq[redis]'
+
+# stage 2 : discard 'wheel' files built by 'pip install'
+# this image is not re-downloaded
+FROM python:3.13.5-slim
+WORKDIR /background
+COPY --from=builder /dependencies /usr/local
+COPY ./background .
+ENV PYTHONPATH="/background"
+CMD ["dramatiq", "worker", "-p", "1", "-t", "4"]

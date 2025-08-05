@@ -1,0 +1,21 @@
+# syntax=docker/dockerfile:1
+
+# stage 1 : download the dependencies
+FROM python:3.13.5-slim AS builder
+# equlivalent to 'mkdir -p /tmp && cd /tmp'
+WORKDIR /tmp
+COPY requirements.txt .
+# installs the modules in the directory 'dependencies'
+RUN pip install --no-cache-dir --prefix=/dependencies -r requirements.txt
+
+# stage 2 : discard 'wheel' files built by 'pip install'
+# this image is not re-downloaded
+FROM python:3.13.5-slim
+WORKDIR /app
+COPY --from=builder /dependencies /usr/local
+COPY ./backend ./backend
+COPY ./background ./background
+# The slim-image lacks the tool 'curl', which I use to test the backend-service's "health"
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+ENV PYTHONPATH="/app"
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
