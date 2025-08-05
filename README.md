@@ -8,8 +8,7 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 - The RPS is maintained even as the load increases from 10 to 160 concurrent-connections.
 
 ![Metrics : Latency vs RPS](img/metrics.jpg)
-
-###Diagram:
+## Diagram:
 - x, y axes: RPS, Latency (msec)\
 - The integer written beside each dot is the number of concurrent-connections.\
 
