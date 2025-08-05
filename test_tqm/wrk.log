@@ -1,0 +1,85 @@
+Running wrk with 1 thread and 10 connection(s)...
+Running 10s test @ https://localhost:443/trigger
+  1 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     6.74ms    2.09ms  19.80ms   71.27%
+    Req/Sec     1.49k   131.54     1.67k    83.00%
+  Latency Distribution
+     50%    6.52ms
+     75%    7.92ms
+     90%    9.40ms
+     99%   13.01ms
+  14795 requests in 10.01s, 3.00MB read
+Requests/sec:   1478.50
+Transfer/sec:    307.47KB
+
+---------------------------------------------
+
+Running wrk with 1 thread and 20 connection(s)...
+Running 10s test @ https://localhost:443/trigger
+  1 threads and 20 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    13.14ms    1.73ms  24.27ms   71.53%
+    Req/Sec     1.52k    45.14     1.60k    81.00%
+  Latency Distribution
+     50%   13.10ms
+     75%   14.23ms
+     90%   15.21ms
+     99%   17.65ms
+  15165 requests in 10.01s, 3.08MB read
+Requests/sec:   1515.44
+Transfer/sec:    315.16KB
+
+---------------------------------------------
+
+Running wrk with 1 thread and 50 connection(s)...
+Running 10s test @ https://localhost:443/trigger
+  1 threads and 50 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    32.97ms    2.34ms  48.93ms   84.62%
+    Req/Sec     1.52k    72.54     1.63k    87.00%
+  Latency Distribution
+     50%   32.85ms
+     75%   33.82ms
+     90%   35.01ms
+     99%   41.89ms
+  15085 requests in 10.01s, 3.06MB read
+Requests/sec:   1507.39
+Transfer/sec:    313.48KB
+
+---------------------------------------------
+
+Running wrk with 1 thread and 80 connection(s)...
+Running 10s test @ https://localhost:443/trigger
+  1 threads and 80 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    60.01ms   32.85ms 261.26ms   88.20%
+    Req/Sec     1.42k   284.80     1.76k    90.00%
+  Latency Distribution
+     50%   52.97ms
+     75%   56.48ms
+     90%   67.90ms
+     99%  218.46ms
+  14105 requests in 10.01s, 2.86MB read
+Requests/sec:   1408.67
+Transfer/sec:    292.98KB
+
+---------------------------------------------
+
+Running wrk with 1 thread and 160 connection(s)...
+Running 10s test @ https://localhost:443/trigger
+  1 threads and 160 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   110.83ms   29.04ms 407.00ms   91.61%
+    Req/Sec     1.46k   205.05     1.72k    87.76%
+  Latency Distribution
+     50%  105.16ms
+     75%  107.63ms
+     90%  129.56ms
+     99%  285.30ms
+  14436 requests in 10.05s, 2.93MB read
+Requests/sec:   1436.99
+Transfer/sec:    298.91KB
+
+---------------------------------------------
+

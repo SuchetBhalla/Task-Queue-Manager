@@ -12,7 +12,13 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 - x, y axes: RPS, Latency (msec)\
 - The integer written beside each dot is the number of concurrent-connections.\
 
-### API Testing
+## API Testing
 - The load was generated with the tool [wrk](https://github.com/wg/wrk) on the slowest endpoint 'trigger'.
 - The metrics were calculated on a dev setup: WSL, 8 logical-cores, processor: i5-113G7
   - For these measurements, the backend was run in WSL directly, rather than as docker-containers.
+
+### To test the backend
+1. launch it with *docker compose up*
+   - if a mount error occurs, then restart WSL. The error is stated in the file *test_tqm/wsl_mount_error.txt*
+2. register a user, with the file *test_tqm/register.py*
+3. execute the shell script *test_tqm/bombard.sh*
