@@ -9,9 +9,9 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 
 ![Metrics : Latency vs RPS](img/metrics.jpg)
 ### Diagram:
-- x, y axes: RPS, Latency (msec)\
+- x, y axes: RPS, Latency (msec)
 - The blue bands represent the standard-deviation from the average latenct. The details are logged in *test_tqm/wrk.log*
-- The integer written beside each dot is the number of concurrent-connections.\
+- The integer written beside each dot is the number of concurrent-connections
 
 ## API Testing
 - The load was generated with the tool [wrk](https://github.com/wg/wrk) on the slowest endpoint 'trigger'.
