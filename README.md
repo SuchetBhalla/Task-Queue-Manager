@@ -14,5 +14,5 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 
 ### API Testing
 - The load was generated with the tool [wrk](https://github.com/wg/wrk) on the slowest endpoint 'trigger'.
-- The metrics were calculated in on a dev setup: WSL, 8 logical-cores, processor: i5-113G7
+- The metrics were calculated on a dev setup: WSL, 8 logical-cores, processor: i5-113G7
   - For these measurements, the backend was run in WSL directly, rather than as docker-containers.
