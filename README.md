@@ -10,7 +10,7 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 ![Metrics : Latency vs RPS](img/metrics.jpg)
 ### Diagram:
 - x, y axes: RPS, Latency (msec)
-- The blue bands represent the standard-deviation from the average latency. The details are logged in *test_tqm/wrk.log*
+- The blue-bands represent the standard-deviation from the average-latency. The details are logged in *test_tqm/wrk.log*
 - The integer written beside each dot is the number of concurrent-connections
 
 ## API Testing
@@ -20,6 +20,6 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 
 ### To test the backend
 1. launch it with: *docker compose up*
-   - if a *mount error* occurs, then restart WSL. The error is stated in the file *test_tqm/wsl_mount_error.txt*
+   - if a *mount error* occurs, then restart WSL. The error is stated in the file *test_tqm/wsl_mount.error*
 2. register a user, with the file *test_tqm/register.py*
 3. execute the shell script *test_tqm/bombard.sh*
