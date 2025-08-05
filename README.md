@@ -2,7 +2,7 @@
 
 Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Containerized with Docker.
 
-![System Architecture](img/sys_arh.jpg)
+![System Architecture](img/sys_arch.jpg)
 ## Metrics:
 - Under light load (best case): >= 1500 RPS at < 7 msec latency
 - The RPS is maintained even as the load increases from 10 to 160 concurrent-connections.
