@@ -18,7 +18,7 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
   - For these measurements, the backend was run in WSL directly, rather than as docker-containers.
 
 ### To test the backend
-1. launch it with *docker compose up*
-   - if a mount error occurs, then restart WSL. The error is stated in the file *test_tqm/wsl_mount_error.txt*
+1. launch it with: *docker compose up*
+   - if a *mount error* occurs, then restart WSL. The error is stated in the file *test_tqm/wsl_mount_error.txt*
 2. register a user, with the file *test_tqm/register.py*
 3. execute the shell script *test_tqm/bombard.sh*
