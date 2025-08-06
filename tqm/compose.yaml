@@ -25,7 +25,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: '4'
     # refer: https://docs.docker.com/compose/how-tos/startup-order/
     depends_on:
       queue:
@@ -57,7 +57,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: '2'
     depends_on:
       queue:
         condition: service_healthy
@@ -81,7 +81,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: '4'
     ports:
       - 5432:5432
     volumes:
