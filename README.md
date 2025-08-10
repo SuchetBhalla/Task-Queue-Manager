@@ -18,6 +18,11 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 - The metrics were calculated on a dev setup: WSL, 8 logical-cores, processor: i5-113G7
   - For these measurements, the backend was run in WSL directly, rather than as docker-containers.
 
+### Demo:
+![Demo](img/demo.gif)
+- Used the tool [hey](https://github.com/rakyll/hey) for the demo.
+   - The commands appear on the top-right side of the screen 
+
 ### To test the backend
 1. launch it with: *docker compose up*
    - if a *mount error* occurs, then restart WSL. The error is stated in the file *test_tqm/wsl_mount.error*
