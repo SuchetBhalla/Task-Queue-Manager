@@ -10,7 +10,8 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 ![Metrics : Latency vs RPS](img/metrics.jpg)
 ### Diagram:
 - x, y axes: RPS, Latency (msec)
-- The blue-bands represent the standard-deviation from the average-latency. The details are logged in *test_tqm/wrk.log*
+- The blue-bands represent the standard-deviation from the average-latency.
+   - The details are logged in *test_tqm/wrk.log*
 - The integer written beside each dot is the number of concurrent-connections
 
 ## API Testing
@@ -21,7 +22,7 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 ### Demo:
 ![Demo](img/demo.gif)
 - Used the tool [hey](https://github.com/rakyll/hey) for the demo.
-   - The commands appear on the top-right side of the screen 
+   - The commands appear on the top-right side of the screen
 
 ### To test the backend
 1. launch it with: *docker compose up*
