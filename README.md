@@ -22,7 +22,7 @@ Built a scalable backend with NGINX, FastAPI, PostgreSQL, redis, dramatiq. Conta
 ### Demo:
 ![Demo](img/demo.gif)
 - Used the tool [hey](https://github.com/rakyll/hey) for the demo.
-   - The commands appear on the top-right side of the screen
+   - The commands appear on the top-right side of the gif
 
 ### To test the backend
 1. launch it with: *docker compose up*
